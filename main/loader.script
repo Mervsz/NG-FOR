@@ -1,0 +1,56 @@
+go.property("life", 1)
+
+function init(self)
+	msg.post(".", "acquire_input_focus")
+	self.level = 1
+	
+end
+
+function final(self)
+	-- Add finalization code here
+	-- Remove this function if not needed
+end
+
+function update(self, dt)
+end
+
+function on_message(self, message_id, message, sender)
+	-- print(sender, "check sender")
+	-- print(message_id, "check message_id")
+	if message_id == hash("level_loop") then
+		msg.post("#proxy_level_loop", "load", {level = self.level })
+	elseif message_id == hash("proxy_loaded") then
+		msg.post(sender, "init")
+		msg.post(sender, "enable")
+	elseif message_id == hash("proxy_unloaded") then
+		if self.life > 0 == true then
+			self.level = self.level + 1
+			print("loop")
+			msg.post("#", "level_loop")
+		else
+			msg.post("main:/home_gui/game_home#home", "show_level_select")
+			self.level = 1
+			self.life = 1
+		end
+	end
+
+	if message_id == hash("level_result") then
+		print("mes", message.result)
+		msg.post("#proxy_level_loop", "unload")
+		if message.result == true then
+			self.level = self.level + 1
+		else
+			self.life = self.life - 1
+		end
+	end
+end
+
+function on_input(self, action_id, action)
+	-- Add input-handling code here
+	-- Remove this function if not needed
+end
+
+function on_reload(self)
+	-- Add reload-handling code here
+	-- Remove this function if not needed
+end

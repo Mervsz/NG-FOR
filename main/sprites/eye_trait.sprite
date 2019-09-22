@@ -1,0 +1,4 @@
+tile_set: "/main/resource/flat.tilesource"
+default_animation: "blue"
+material: "/builtins/materials/sprite.material"
+blend_mode: BLEND_MODE_ALPHA

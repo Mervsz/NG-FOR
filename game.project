@@ -1,0 +1,19 @@
+[bootstrap]
+main_collection = /main/main.collectionc
+
+[script]
+shared_state = 1
+
+[display]
+width = 262
+height = 160
+fullscreen = 1
+display_profiles = /main/resource/sample.display_profilesc
+
+[android]
+input_method = HiddenInputField
+app_icon_36x36 = /space_background_pack/layers/parallax-space-backgound.png
+
+[project]
+title = NG-FOR
+

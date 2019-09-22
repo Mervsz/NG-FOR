@@ -1,0 +1,5 @@
+go.property("sprite_anim", hash(""))
+function init(self)
+	msg.post(".", "acquire_input_focus")
+	msg.post("#eye_trait", "play_animation", { id = self.sprite_anim })
+end
